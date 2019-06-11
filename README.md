@@ -8,6 +8,11 @@ EthGrid is an Electricity Grid application built on Blockchain with a centrally 
 
 ### Prerequisites
 
+Open a terminal in any directory and run
+```
+git clone https://github.com/ARJUN-R34/EthGrid.git 
+```
+
 Ensure you install the following prerequisites before running the app.
 Run these commands from the project root directory.
 
