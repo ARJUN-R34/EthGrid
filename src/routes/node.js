@@ -13,18 +13,61 @@ router.post('/nodedashboard', function (req, res, next) {
     console.log("The name is : " , name);
     console.log("The address is : " , address);
 
-    Contract.methods.getNode(address).call({from: coinbase}).then((val) => {
+    Contract.methods.getNode(address).call({from: address}).then((val) => {
         console.log("The transaction details are : " , val);
 
         if(name == val._name && address == val._addressNode) {
             console.log("Login Successful");
-            res.render('nodedashboard');
+            res.render('nodedashboard', {address : address});
         }
         else {
             console.log("Error");
             res.render('nodelogin');
         }
     });
+});
+
+router.get('/send', function (req, res, next) {
+    res.render('nodesend');
+});
+
+router.get('/request', function (req, res, next) {
+    res.render('noderequest');
+});
+
+router.post('/send' , function (req, res) {
+
+    var power = req.body.unit;
+    var address = req.body.address;
+
+    console.log("The amount of power ready to send is : " , power);
+
+    Contract.methods.donatePower(address, power).send({from : address , gas : 600000}).then((val) => {
+        console.log("The transaction details are : " , val);
+        console.log("");
+        console.log("The power donation request is sent successfully");
+        res.render('nodedashboard' , { address });
+    });
+
+});
+
+router.post('/request', function (req, res) {
+
+    var power = req.body.unit;
+    var address = req.body.address;
+
+    console.log("The amount of power ready to send is : ", power);
+
+    Contract.methods.requirePower(address, power).send({
+        from: address,
+        gas: 600000
+    }).then((val) => {
+        console.log("The transaction details are : ", val);
+        console.log("");
+        console.log("The power requirement request is sent successfully");
+        res.render('nodedashboard', { address });
+    });
+
 });
 
 module.exports = router;

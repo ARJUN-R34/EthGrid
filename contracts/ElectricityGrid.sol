@@ -33,7 +33,7 @@ contract SmartGrid {
     //Mappings
     mapping(uint => Node) public nodes;
     
-    mapping(address => Node) nodeInfo;
+    mapping(address => Node) public nodeInfo;
     
     mapping(address => NodePowerGive) public giveRequest;
     
@@ -55,22 +55,21 @@ contract SmartGrid {
     }
     
     //Function to create a node
-    function createNode(string memory _name, address _nodeAddress) public onlyVP returns (bool) {
+    function createNode(string memory _name, address _nodeAddress) public onlyVP returns(bool) {
         nodeCount++;
         nodes[nodeCount] = Node(_name, _nodeAddress);
+        nodeInfo[_nodeAddress] = Node(_name, _nodeAddress);
         return true;
     }
     
     //Function to get the Node details
     function getNode(address _address) public view returns(string memory _name, address _addressNode) {
-        _name = nodeInfo[_address].name;
-        _addressNode = nodeInfo[_address].nodeAddress;
+        return (_name = nodeInfo[_address].name, _addressNode = nodeInfo[_address].nodeAddress);
     }
     
     //Function to get VP details
     function getVP(address _address) public view returns(string memory _name, address _addressVP) {
-        _name = VPinfo[_address].name;
-        _addressVP = VPinfo[_address].VPaddress;
+        return (_name = VPinfo[_address].name, _addressVP = VPinfo[_address].VPaddress);
     }
     
     //Function to request to donate power

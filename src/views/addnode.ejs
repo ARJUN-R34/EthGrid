@@ -40,7 +40,7 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-light btn btn-outline-secondary">
             <ul class="navbar-nav">
                 <li class="nav-item active ">
-                    <a class="nav-link text-white" href="/">Eth-Grid | HomePage </a>
+                    <a class="nav-link text-white" href="/">EthGrid | HomePage </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-info" href='/vp/addnode'> Add Node </a>
@@ -53,12 +53,25 @@
         <br>
 
         <div class="jumbotron border border-info bg-dark">
-            <h3 class="text-info text-bold">Welcome to VP DashBoard</h3>
-
+            <div class="form-modal">
+                <div class="form-toggle">
+                    <h1 id="man-toggle" style="color: azure">Add a new NODE </h1>
+                    <br><br>
+                </div>
+                <div id="man-form">
+                    <form id="manform" action="/vp/addnode" method="POST">
+                        <table>
+                            <input type="text" name="nodeaddress" id="nodeaddress"
+                                placeholder="Enter the Node's address" required>
+                            <br><br><br>
+                            <input type="text" name="name" id="name"
+                                placeholder="Enter the Node's name" required>
+                        </table><br><br>
+                        <button type="submit" class="btn btn-success login"> ADD NODE </button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-
-
 
     </div>
 </body>

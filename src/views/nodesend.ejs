@@ -43,22 +43,34 @@
                     <a class="nav-link text-white" href="/">Eth-Grid | HomePage </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href='/vp/addnode'> Add Node </a>
+                    <a class="nav-link text-info" href='/node/send'> Send Power </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href='/vp/transfer'> TRANSFER </a>
+                    <a class="nav-link text-info" href='/node/request'> Request Power </a>
                 </li>
             </ul>
         </nav>
         <br>
 
         <div class="jumbotron border border-info bg-dark">
-            <h3 class="text-info text-bold">Welcome to VP DashBoard</h3>
-
+            <div class="form-modal">
+                <div class="form-toggle">
+                    <h1 id="man-toggle" style="color: azure">Send Excess Power  </h1>
+                    <br><br>
+                </div>
+                <div id="man-form">
+                    <form id="manform" action="/node/send" method="POST">
+                        <table>
+                            <input type="text" name="unit" id="unit"
+                                placeholder="Units of Power available" required>
+                            <br><br><br>
+                            <input type="text" name="address" id="address" placeholder="Address of this node" required>
+                        </table><br><br>
+                        <button type="submit" class="btn btn-success login"> SEND </button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-
-
 
     </div>
 </body>
