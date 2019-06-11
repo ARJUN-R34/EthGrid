@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EthGrid</title>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        body::after {
+            content: "";
+            background:
+                url(https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80);
+            opacity: 0.25;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="jumbotron text-center">
+    <div class="">
+        <h1 class="text-info display-3">Eth<span class="text-secondary">Grid</span> </h1>
+        <br>
+
+        <div class="jumbotron border border-info bg-dark">
+            <h3 class="text-info text-bold">Welcome to Node Login Page</h3>
+            <br><br>
+            <form action='/node/nodedashboard' method="POST">
+                <h1></h1>
+
+
+                <input type="text" id="address" name="address" placeholder="Node Address" required /></br></br>
+
+                <input type="text" id="name" name="name" placeholder="Node Name" required /></br></br>
+
+                <br><br>
+                <input type="submit" value="Create Node" />
+            </form><br><br>
+        </div>
+    </div>
+</body>
+
+<script>
+    // function setNode() {
+
+    //     var name = document.getElementById('name').value;
+    //     var address = document.getElementById('address').value;
+    //     if (name.length != 0 && address.length != 0) {
+    //         $.post('/node/nodedashboard', {
+    //             name: name,
+    //             address: address
+    //         }, 'json');
+    //     } else {
+    //         alert('please enter correct data');
+    //     }
+    // }
+</script>
+
+
+</html>
