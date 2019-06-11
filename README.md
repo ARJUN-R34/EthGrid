@@ -36,12 +36,16 @@ Go to project folder
 ```
 cd EthGrid
 ```
-To start our private chain using ganache-cli with 10 accounts in the "node" folder, run,
+To start our private chain using ganache-cli with 10 accounts, run,
 ```
 ganache-cli -i 12345
 ```
 
 Open another terminal in the root directory and run
+```
+truffle migrate
+```
+then,
 ```
 cd src
 ```
@@ -51,11 +55,6 @@ npm install
 ```
 ```
 nodemon start
-```
-
-Open another terminal and run
-```
-truffle migrate
 ```
 
 Open your browser and go to localhost:3000 to interact with the app.
