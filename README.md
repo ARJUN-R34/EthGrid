@@ -52,4 +52,9 @@ Open another console in the root directory and run the below command to start th
 nodemon start
 ```
 
+Open another terminal and run
+```
+truffle migrate
+```
+
 Open your browser and go to localhost:3000 to interact with the app.
