@@ -74,7 +74,7 @@ contract SmartGrid {
         return (_name = VPinfo[_address].name, _addressVP = VPinfo[_address].VPaddress);
     }
     
-    //Function to request to donate power
+    //Function to donate power
     function donatePower(address _address, uint _power) public returns(bool) {
         require(msg.sender == _address);
         temp_power = giveRequest[_address].powerUnits;
