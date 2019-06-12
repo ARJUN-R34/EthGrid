@@ -5,6 +5,8 @@ contract SmartGrid {
     //State Variables
     uint public nodeCount;
     address public VPaddress;
+    uint private temp_power;
+     uint private temp_power2;
     
     //Structure for storing Node Info
     struct Node {
@@ -75,14 +77,23 @@ contract SmartGrid {
     //Function to request to donate power
     function donatePower(address _address, uint _power) public returns(bool) {
         require(msg.sender == _address);
-        giveRequest[_address] = NodePowerGive(_address, _power);
+        temp_power = giveRequest[_address].powerUnits;
+        if(temp_power!=0){_power = temp_power+_power;
+            giveRequest[_address] = NodePowerGive(_address, _power);
+        }
+        else{
+        giveRequest[_address] = NodePowerGive(_address, _power);}
         return true;
     } 
     
     //Function to request for power
     function requirePower(address _address, uint _power) public returns(bool) {
         require(msg.sender == _address);
-        needRequest[_address] = NodePowerNeed(_address, _power);
+        temp_power2 = needRequest[_address].powerUnits;
+        if(temp_power2!=0){
+            _power = _power + temp_power2;
+            needRequest[_address] = NodePowerNeed(_address, _power);}else{
+        needRequest[_address] = NodePowerNeed(_address, _power);}
         return true;
     }
     
