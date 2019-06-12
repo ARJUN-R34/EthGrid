@@ -70,4 +70,41 @@ router.post('/transfer' , function (req, res) {
 
 });
 
+router.get('/transferreq' , function (req, res) {
+    res.render('transferreq');
+});
+
+router.post('/giver' , function (req, res) {
+
+    var giver = req.body.giver;
+    console.log("The Giver's address is : " , giver);
+
+    Contract.methods.giveRequest(giver).call({from : coinbase}).then((val) => {
+        console.log("The transaction details are : " , val);
+        res.render('transferreq' , { giverAdd: val.nodeAddress, giverPower: val.powerUnits, receiverAdd: " ", receiverPower: " " });
+        console.log("Giver Query Successful");
+    });
+
+});
+
+router.post('/receiver', function (req, res) {
+
+    var receiver = req.body.receiver;
+    console.log("The Receiver's address is : ", receiver);
+
+    Contract.methods.needRequest(receiver).call({
+        from: coinbase
+    }).then((val) => {
+        console.log("The transaction details are : ", val);
+        res.render('transferreq', {
+            receiverAdd: val.nodeAddress,
+            receiverPower: val.powerUnits,
+            giverAdd : " ",
+            giverPower : " "
+        });
+        console.log("Receiver Query Successful");
+    });
+
+});
+
 module.exports = router;
