@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EthGrid</title>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        body::after {
+            content: "";
+            background:
+                url(https://n266q20r9p03mp9942sf3y81-wpengine.netdna-ssl.com/wp-content/uploads/2015/07/reliability-rajant-mesh-wireless-network.jpg);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.75;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="jumbotron text-center">
+    <div class="">
+        <h1 class="text-info display-3">Eth<span class="text-secondary">Grid</span> </h1>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-light btn btn-outline-secondary">
+            <ul class="navbar-nav">
+                <li class="nav-item active ">
+                    <a class="nav-link text-white" href="/">Eth-Grid | HomePage </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href='/vp/login'> VP </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href='/node/login'> NODE </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href='/dispute'> DISPUTES </a>
+                </li>
+            </ul>
+        </nav>
+        <br>
+
+        <div class="jumbotron border border-info bg-dark">
+            <h3 class="text-info text-bold">Welcome to the Dispute Resolution Page</h3>
+            <br>
+            <div id="man-form">
+                <form>
+                    <table>
+                        <label for="ownaddress" style="color: #fff"><b>Enter your address :</b> </label><br><br>
+                        <input type="text" name="ownaddress" id="ownaddress"
+                            placeholder="Enter your address" required>
+                        <br><br><br>
+                         <label for="senderaddress" style="color: #fff"><b>Enter The Sender's address :</b> </label><br><br>
+                         <input type="text" name="senderaddress" id="senderaddress" placeholder="Enter the sender's address" required>
+                         <br><br><br>
+                         <label for="recaddress" style="color: #fff"><b>Enter the Receiver's address :</b> </label><br><br>
+                         <input type="text" name="recaddress" id="recaddress" placeholder="Enter the Receiver's address" required>
+                         <br><br><br>
+                          <label for="amount" style="color: #fff"><b>Enter the actual amount :</b> </label><br><br>
+                          <input type="text" name="amount" id="amount" placeholder="Enter the actual amount"
+                              required>
+                          <br><br><br>
+                    </table><br><br>
+                    <button type="submit" class="btn btn-success login" onclick="dispute()"> SUBMIT DISPUTE </button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+<script>
+    function dispute() {
+        alert("Transaction once done cannot be changed....!!")
+    }
+</script>
+
+</html>
