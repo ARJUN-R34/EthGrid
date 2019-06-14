@@ -11,7 +11,7 @@ var MyContractJSON = require(path.join(__dirname, '../build/contracts/SmartGrid.
 
 var app = express();
 
-coinbase = "0x154329140528858d58d969f1f0f0503d95a60154";
+coinbase = "0x81d48d9447f08c2735d05f9a4d97381e6c0ee902";
 
 const contractAddress = MyContractJSON.networks['12345'].address;
 

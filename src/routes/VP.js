@@ -71,7 +71,12 @@ router.post('/transfer' , function (req, res) {
 });
 
 router.get('/transferreq' , function (req, res) {
-    res.render('transferreq');
+    res.render('transferreq', {
+        giverAdd: "",
+        giverPower: "",
+        receiverAdd: "",
+        receiverPower : ""
+    });
 });
 
 router.post('/giver' , function (req, res) {

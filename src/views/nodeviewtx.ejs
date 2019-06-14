@@ -44,16 +44,16 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-light btn btn-outline-secondary">
             <ul class="navbar-nav">
                 <li class="nav-item active ">
-                    <a class="nav-link text-white" href="/">EthGrid | HomePage </a>
+                    <a class="nav-link text-white" href="/">Eth-Grid | HomePage </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href='/vp/addnode'> ADD NODE </a>
+                    <a class="nav-link text-info" href='/node/send'> Send Power </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href='/vp/transfer'> TRANSFER </a>
+                    <a class="nav-link text-info" href='/node/request'> Request Power </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href='/vp/transferreq'> TRANSFER REQUESTS </a>
+                    <a class="nav-link text-info" href='/node/viewtx'> View Completed Transaction </a>
                 </li>
             </ul>
         </nav>
@@ -62,22 +62,48 @@
         <div class="jumbotron border border-info bg-dark">
             <div class="form-modal">
                 <div class="form-toggle">
-                    <h1 id="man-toggle" style="color: azure">Add a new NODE </h1>
+                    <h1 id="man-toggle" style="color: azure"> View Confirmed Transaction </h1>
                     <br><br>
                 </div>
                 <div id="man-form">
-                    <form id="manform" action="/vp/addnode" method="POST">
+                    <form id="manform" action="/node/viewtx" method="POST">
                         <table>
-                            <input type="text" name="nodeaddress" id="nodeaddress"
-                                placeholder="Enter the Node's address" required>
+                            <input type="text" name="from" id="from" placeholder="Enter the address of the Sender" required>
                             <br><br><br>
-                            <input type="text" name="name" id="name"
-                                placeholder="Enter the Node's name" required>
+                            <input type="number" name="number" id="number" placeholder="Number of this Transaction" required>
                         </table><br><br>
-                        <button type="submit" class="btn btn-success login"> ADD NODE </button>
+                        <button type="submit" class="btn btn-success login"> SUBMIT </button>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="jumbotron border border-info bg-dark">
+
+            <h2 class="text-info">TRANSACTION DETAILS</h2>
+
+            <table class="table table-sm  border-info">
+                <thead class="bg-light text-info">
+                    <tr>
+                        <th>FROM ADDRESS</th>
+                        <th>TO ADDRESS</th>
+                        <th>POWER TRANSFERRED (in units)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-white">
+                    <tr>
+                        <td>
+                            <%= from %>
+                        </td>
+                        <td>
+                            <%= to %>
+                        </td>
+                        <td>
+                            <%= amount %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

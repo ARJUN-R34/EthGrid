@@ -5,13 +5,20 @@ contract SmartGrid {
     //State Variables
     uint public nodeCount;
     address public VPaddress;
-    uint private temp_power;
-     uint private temp_power2;
+    uint private givePowerAmount;
+    uint private requestPowerAmount;
     
     //Structure for storing Node Info
     struct Node {
         string name;
         address nodeAddress;
+    }
+    
+    struct nodeDetails{
+        uint count;
+        address fromAddress;
+        address toAddress;
+        uint amount;
     }
     
     //Structure for storing VP Info
@@ -35,13 +42,15 @@ contract SmartGrid {
     //Mappings
     mapping(uint => Node) public nodes;
     
-    mapping(address => Node) public nodeInfo;
+    mapping(address => Node) nodeInfo;
     
     mapping(address => NodePowerGive) public giveRequest;
     
     mapping(address => NodePowerNeed) public needRequest;
     
     mapping(address => VP) VPinfo;
+    
+    mapping(address => mapping(uint => nodeDetails)) nodeDetailsList;
     
     //Modifiers
     modifier onlyVP() {
@@ -77,23 +86,30 @@ contract SmartGrid {
     //Function to donate power
     function donatePower(address _address, uint _power) public returns(bool) {
         require(msg.sender == _address);
-        temp_power = giveRequest[_address].powerUnits;
-        if(temp_power!=0){_power = temp_power+_power;
+        givePowerAmount = giveRequest[_address].powerUnits;
+        if(givePowerAmount != 0) {
+            _power = givePowerAmount + _power;
             giveRequest[_address] = NodePowerGive(_address, _power);
         }
-        else{
-        giveRequest[_address] = NodePowerGive(_address, _power);}
+        else {
+            giveRequest[_address] = NodePowerGive(_address, _power);
+        }
+        
         return true;
     } 
     
     //Function to request for power
     function requirePower(address _address, uint _power) public returns(bool) {
         require(msg.sender == _address);
-        temp_power2 = needRequest[_address].powerUnits;
-        if(temp_power2!=0){
-            _power = _power + temp_power2;
-            needRequest[_address] = NodePowerNeed(_address, _power);}else{
-        needRequest[_address] = NodePowerNeed(_address, _power);}
+        requestPowerAmount = needRequest[_address].powerUnits;
+        if(requestPowerAmount != 0) {
+            _power = _power + requestPowerAmount;
+            needRequest[_address] = NodePowerNeed(_address, _power);
+        }
+        else {
+        needRequest[_address] = NodePowerNeed(_address, _power);
+        }
+        
         return true;
     }
     
@@ -101,9 +117,27 @@ contract SmartGrid {
     function transferPower(address _senderAddress, address _recipientAddress, uint _power) public onlyVP returns(bool) {
         require(_senderAddress != _recipientAddress);
         require(giveRequest[_senderAddress].powerUnits >= _power);
+        require(needRequest[_recipientAddress].powerUnits != 0);
+        uint temp_count;
         giveRequest[_senderAddress].powerUnits = giveRequest[_senderAddress].powerUnits - _power;
         needRequest[_recipientAddress].powerUnits = needRequest[_recipientAddress].powerUnits - _power;
+        temp_count = nodeDetailsList[_senderAddress][0].count;
+        temp_count++;
+        nodeDetailsList[_senderAddress][temp_count].fromAddress = _senderAddress;
+        nodeDetailsList[_senderAddress][temp_count].toAddress = _recipientAddress;
+        nodeDetailsList[_senderAddress][temp_count].amount = _power;
+        nodeDetailsList[_senderAddress][0].count++;
+        
         return true;
+    }
+    
+    //Function to retrieve Node Details
+    function getNodeDetailsList(address _fromAddress, uint temp) public view returns(address fromAddress, address toAddress, uint amount,uint count) {
+        count = nodeDetailsList[_fromAddress][0].count;
+        fromAddress = nodeDetailsList[_fromAddress][temp].fromAddress;
+        toAddress = nodeDetailsList[_fromAddress][temp].toAddress;
+        amount = nodeDetailsList[_fromAddress][temp].amount;
+        
     }
     
 }

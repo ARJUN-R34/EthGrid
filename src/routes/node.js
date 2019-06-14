@@ -70,4 +70,22 @@ router.post('/request', function (req, res) {
 
 });
 
+router.get('/viewtx' , function(req, res) {
+    res.render('nodeviewtx' , { from : "" , to : "" , amount : "" });
+});
+
+router.post('/viewtx' , function(req, res) {
+    var address = req.body.from;
+    var number = req.body.number;
+
+    console.log("The sender address of the transaction is : " , address);
+    console.log("The index number of this transaction is : " , number);
+
+    Contract.methods.getNodeDetailsList(address,number).call({from : address}).then((val) => {
+        console.log("The transaction details are : " , val);
+
+        res.render('nodeviewtx' , {from : val.fromAddress , to : val.toAddress , amount : val.amount})
+    });
+});
+
 module.exports = router;
