@@ -33,7 +33,7 @@ cd EthGrid
 ```
 To start our private chain using ganache-cli with 10 accounts, run,
 ```
-ganache-cli -i 12345
+ganache-cli -i 12345 -d
 ```
 
 Copy the first account's public key and paste it in src/App.js file under the variable "coinbase".
