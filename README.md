@@ -16,12 +16,7 @@ git clone https://github.com/ARJUN-R34/EthGrid.git
 Ensure you install the following prerequisites before running the app.
 Run these commands from the project root directory.
 
-```
-sudo apt-get update
-```
-```
-sudo apt-get install nodejs
-```
+First install NodeJS
 ```
 npm install -g nodemon
 ```
